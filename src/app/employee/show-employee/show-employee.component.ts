@@ -39,7 +39,8 @@ export class ShowEmployeeComponent implements OnInit {
 
   deleteClick(item: any) {
     if (confirm('Are you sure??')) {
-      this.service.deleteEmployee(item.EmployeeId).subscribe(data => {
+      console.log("delete",item)
+      this.service.deleteEmployee(item.id).subscribe(data => {
         alert(data.toString());
         this.refreshEmpList();
       })

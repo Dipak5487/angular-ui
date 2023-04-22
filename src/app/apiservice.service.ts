@@ -38,17 +38,17 @@ export class ApiserviceService {
 
   addEmployee(emp: any): Observable<any> {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    return this.http.post<any>(this.apiUrl + 'employee/AddEmployee', emp, httpOptions);
+    return this.http.post<any>(this.apiUrl + 'user-create', emp, httpOptions);
   }
 
   updateEmployee(emp: any): Observable<any> {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    return this.http.put<any>(this.apiUrl + 'employee/UpdateEmployee/', emp, httpOptions);
+    return this.http.put<any>(this.apiUrl + 'update', emp, httpOptions);
   }
 
   deleteEmployee(empId: number): Observable<number> {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    return this.http.delete<number>(this.apiUrl + 'employee/DeleteEmployee/' + empId, httpOptions);
+    return this.http.delete<number>(this.apiUrl + empId, httpOptions);
   }
 
   uploadPhoto(photo: any) {
@@ -56,7 +56,7 @@ export class ApiserviceService {
   }
 
   getAllDepartmentNames(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl + 'employee/GetAllDepartmentNames');
+    return this.http.get<any[]>(this.apiUrl + 'get-all');
   }
 
 }
