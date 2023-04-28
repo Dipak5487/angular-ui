@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ApiserviceService } from 'src/app/apiservice.service';
+import { ApiserviceService } from 'src/Services/apiservice.service';
 
 @Component({
   selector: 'app-add-edit-employee',
@@ -54,6 +54,7 @@ export class AddEditEmployeeComponent implements OnInit {
     this.service.addEmployee(val).subscribe(res => {
       alert(res.toString());
     });
+    location.reload();
   }
 
   updateEmployee() {

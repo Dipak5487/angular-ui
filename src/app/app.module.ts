@@ -10,9 +10,26 @@ import { ShowDepartmentComponent } from './department/show-department/show-depar
 import { EmployeeComponent } from './employee/employee.component';
 import { AddEditEmployeeComponent } from './employee/add-edit-employee/add-edit-employee.component';
 import { ShowEmployeeComponent } from './employee/show-employee/show-employee.component';
-import { ApiserviceService } from './apiservice.service';
+import { ApiserviceService } from '../Services/apiservice.service';
 import {HttpClientModule} from '@angular/common/http';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { UserComponent } from './user/user.component';
+import { UserlistComponent } from './user/userlist/userlist.component';
+import { AddEditUserComponent } from './user/add-edit-user/add-edit-user.component';
+import { SidebarComponent } from './dashboard/sidebar/sidebar.component';
+import { MenuComponent } from './dashboard/menu/menu.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatMenuModule} from '@angular/material/menu'
+import {MatButtonModule} from '@angular/material/button'
+import {MatSidenavModule} from '@angular/material/sidenav'
+import {MatIconModule} from '@angular/material/icon';
+import { LoginComponent } from './login/login.component';
+import { UserLoginComponent } from './login/user-login/user-login.component'
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { UserRegiterComponent } from './login/user-regiter/user-regiter.component'
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatCardModule} from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -23,14 +40,31 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
     ShowDepartmentComponent,
     EmployeeComponent,
     AddEditEmployeeComponent,
-    ShowEmployeeComponent
+    ShowEmployeeComponent,
+    UserComponent,
+    UserlistComponent,
+    AddEditUserComponent,
+    SidebarComponent,
+    MenuComponent,
+    LoginComponent,
+    UserLoginComponent,
+    UserRegiterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatInputModule
   ],
   providers: [ApiserviceService],
   bootstrap: [AppComponent]

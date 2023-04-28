@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ApiserviceService } from 'src/app/apiservice.service';
+import { ApiserviceService } from 'src/Services/apiservice.service';
 
 @Component({
   selector: 'app-add-edit-department',

@@ -1,0 +1,20 @@
+<div class="menu">
+    <button class="home" mat-button [matMenuTriggerFor]="aboveMenu" >Home</button>
+    <mat-menu #aboveMenu="matMenu" yPosition="above">
+        <button routerLink="employee" mat-menu-item>Employee</button>
+        <button routerLink="department" mat-menu-item>Department</button>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="belowMenu">Contact</button>
+    <mat-menu #belowMenu="matMenu" yPosition="below">
+        <button routerLink="employee" mat-menu-item>Employee</button>
+        <button routerLink="department" mat-menu-item>Department</button>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="beforeMenu" style="position: relative;">My Profile</button>
+    <mat-menu #beforeMenu="matMenu" xPosition="before">
+        <button routerLink="userlogin" mat-menu-item>Login</button>
+        <button routerLink="userRegister" mat-menu-item>Register</button>
+    </mat-menu>
+</div>
+

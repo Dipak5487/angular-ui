@@ -1,6 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Subscription } from 'rxjs/internal/Subscription';
+import { userModel } from '../app/user/userlist/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -8,12 +10,23 @@ import { Observable } from 'rxjs';
 export class ApiserviceService {
   readonly apiUrl = 'https://localhost:44396/api/User/';
   readonly photoUrl = "http://localhost:50306/Photos/";
+  readonly authUrl = "https://localhost:44396/api/Authrization/"
+  token: any = '';
+  constructor(private http: HttpClient) {
+  }
 
-  constructor(private http: HttpClient) { }
+  
 
   // Department
   getDepartmentList(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl + 'get-all');
+
+    this.token = localStorage.getItem("app_token")
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    });
+    const requestOptions = { headers: headers };
+    return this.http.get<any[]>(this.apiUrl + 'get-all',requestOptions);
+
   }
 
   addDepartment(dept: any): Observable<any> {
@@ -32,8 +45,19 @@ export class ApiserviceService {
   }
 
   // Employee
-  getEmployeeList(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl + 'get-all');
+  getEmployeeList() {
+    this.token = localStorage.getItem("app_token")
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    });
+    const requestOptions = { headers: headers };
+    return this.http.get<userModel[]>(this.apiUrl + 'get-all', requestOptions);
+  }
+
+  getToken(tokenModel: any) {
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
+
+    return this.http.post<string>(this.authUrl + 'GetToken', tokenModel, { ...httpOptions, responseType: 'text' as 'json' });
   }
 
   addEmployee(emp: any): Observable<any> {

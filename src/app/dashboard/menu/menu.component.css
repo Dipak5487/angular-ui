@@ -1,0 +1,20 @@
+body {
+    margin: 0;
+    font-family: "Lato", sans-serif;
+  }
+
+  .menu {
+    background-color: #EDF1D6;
+    height: 60px;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    
+  }
+
+  .menu button{
+    font-size: large;
+  }
+
+  
+  

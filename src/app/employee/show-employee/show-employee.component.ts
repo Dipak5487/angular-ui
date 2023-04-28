@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiserviceService } from 'src/app/apiservice.service';
+import { ApiserviceService } from 'src/Services/apiservice.service';
 
 @Component({
   selector: 'app-show-employee',
@@ -14,7 +14,6 @@ export class ShowEmployeeComponent implements OnInit {
   ModalTitle = "";
   ActivateAddEditEmpComp: boolean = false;
   emp: any;
-
   ngOnInit(): void {
     this.refreshEmpList();
   }
