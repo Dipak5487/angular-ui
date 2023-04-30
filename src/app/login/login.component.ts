@@ -6,9 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  ActivateAddEditEmpComp:boolean = false
-  closeClick() {
-    this.ActivateAddEditEmpComp = false;
-    
-  }
+ 
 }

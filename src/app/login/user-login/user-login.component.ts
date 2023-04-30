@@ -3,6 +3,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AuthServiceService } from 'src/Services/AuthServices/auth-service.service';
+import { MatDialog } from '@angular/material/dialog';
+import { UserRegiterComponent } from '../user-regiter/user-regiter.component';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-user-login',
@@ -10,7 +13,7 @@ import { AuthServiceService } from 'src/Services/AuthServices/auth-service.servi
   styleUrls: ['./user-login.component.css']
 })
 export class UserLoginComponent implements OnInit {
-  form:any
+  form: any
   loading = false;
   submitted = false;
   constructor(
@@ -18,6 +21,8 @@ export class UserLoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private loginService: AuthServiceService,
+    public dialog: MatDialog,
+    private appComponet: AppComponent
   ) { }
 
   ngOnInit() {
@@ -31,37 +36,41 @@ export class UserLoginComponent implements OnInit {
   get f() { return this.form.controls; }
   onSubmit() {
     this.submitted = true;
-
-    // reset alerts on submit
-
-
-    // stop here if form is invalid
     if (this.form.invalid) {
       return;
     }
 
     this.loading = true;
-    var authModel={
-      email:this.f.username.value,
-       password: this.f.password.value,
-       rememverMe : true
+    var authModel = {
+      email: this.f.username.value,
+      password: this.f.password.value,
+      rememverMe: true
     }
 
     console.log(authModel)
     this.loginService.userLogin(authModel)
-      .pipe(first())
-      .subscribe({
-        next: () => {
-          // get return url from query parameters or default to home page
-          const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-          this.router.navigateByUrl(returnUrl);
+      .pipe(first()).subscribe({
+        next: (data) => {
+          debugger
+          if (data.succeeded) {
+            const returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'dashboard';
+            
+            this.router.navigate(["/employee"]);
+          }
+          else {
+            this.router.navigate(["/userlogin"])
+          }
         },
         error: error => {
-          console.log("Error Message", error)
           this.loading = false;
+          this.router.navigate(["/userlogin"])
         }
       });
   }
 
-
+  openDialogRegister() {
+    const dialogRef = this.dialog.open(UserRegiterComponent);
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
 }

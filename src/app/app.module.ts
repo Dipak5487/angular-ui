@@ -23,13 +23,13 @@ import {MatMenuModule} from '@angular/material/menu'
 import {MatButtonModule} from '@angular/material/button'
 import {MatSidenavModule} from '@angular/material/sidenav'
 import {MatIconModule} from '@angular/material/icon';
-import { LoginComponent } from './login/login.component';
-import { UserLoginComponent } from './login/user-login/user-login.component'
 import {MatToolbarModule} from '@angular/material/toolbar';
-import { UserRegiterComponent } from './login/user-regiter/user-regiter.component'
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
+import {MatDialogModule} from '@angular/material/dialog';
+import { UserLoginComponent } from './login/user-login/user-login.component';
+import { UserRegiterComponent } from './login/user-regiter/user-regiter.component';
 
 @NgModule({
   declarations: [
@@ -45,8 +45,7 @@ import { MatInputModule } from '@angular/material/input';
     UserlistComponent,
     AddEditUserComponent,
     SidebarComponent,
-    MenuComponent,
-    LoginComponent,
+    MenuComponent,    
     UserLoginComponent,
     UserRegiterComponent
   ],
@@ -64,7 +63,8 @@ import { MatInputModule } from '@angular/material/input';
     MatToolbarModule,
     MatFormFieldModule,
     MatCardModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule
   ],
   providers: [ApiserviceService],
   bootstrap: [AppComponent]
