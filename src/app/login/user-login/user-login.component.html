@@ -1,4 +1,4 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<!-- <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <mat-dialog-content class="mat-typography">
         <div class="card">
             <h4 class="card-header">Login</h4>
@@ -29,4 +29,64 @@
             Login</button>
         <button  style='margin-right:16px' mat-button mat-dialog-close (click)="openDialogRegister()">Register</button>
     </mat-dialog-actions>
-</form>
+</form> -->
+
+<mat-card class="container">
+    <mat-card-title class="login-Text">Login</mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-control">
+            <p >
+                <!-- <mat-form-field class="text-box">
+                    <input type="text" matInput placeholder="Username" formControlName="username">
+                </mat-form-field> -->
+
+                <mat-form-field class="text-box">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput [formControl]="f.emailFormControl" [errorStateMatcher]="matcher"
+                           placeholder="Ex. pat@dipak.com">
+                    <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                    <mat-error *ngIf="f.emailFormControl.hasError('email') && !f.emailFormControl.hasError('required')">
+                      Please enter a valid email address
+                    </mat-error>
+                    <mat-error *ngIf="f.emailFormControl.hasError('required')">
+                      Email is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+            </p>
+
+            <p>
+                <!-- <mat-form-field class="text-box">
+                    <input type="password" matInput placeholder="Password" formControlName="password">
+                </mat-form-field>
+                <span *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
+                </span> -->
+
+                <mat-form-field class="text-box">
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput [formControl]="f.passwordFormControl" [errorStateMatcher]="matcher"
+                           placeholder="Minimum 8 Character">
+                    <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                    <mat-error *ngIf="f.passwordFormControl.hasError('password') && !f.emailFormControl.hasError('required')">
+                      Please enter a valid Password address
+                    </mat-error>
+                    <mat-error *ngIf="f.passwordFormControl.hasError('required')">
+                      Password is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+            </p>
+
+            <p *ngIf="error" class="error">
+                {{ error }}
+            </p>
+        <br/>
+        <br/>
+            <div class="button">
+                <button style='margin-right:16px' [disabled]="loading" class="btn btn-primary w-100"> 
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+                    Login</button>
+            </div>
+
+        </form>
+    </mat-card-content>
+</mat-card>

@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AuthServiceService } from 'src/Services/AuthServices/auth-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UserRegiterComponent } from '../user-regiter/user-regiter.component';
 import { AppComponent } from 'src/app/app.component';
+import {FormBuilder, FormControl,FormGroup, FormGroupDirective, MinLengthValidator, NgForm, Validators} from '@angular/forms';
+import {ErrorStateMatcher} from '@angular/material/core';
 
 @Component({
   selector: 'app-user-login',
@@ -13,27 +14,36 @@ import { AppComponent } from 'src/app/app.component';
   styleUrls: ['./user-login.component.css']
 })
 export class UserLoginComponent implements OnInit {
+  @Input() error?: string | null;
   form: any
   loading = false;
   submitted = false;
   constructor(
-    private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private loginService: AuthServiceService,
     public dialog: MatDialog,
-    private appComponet: AppComponent
+    private appComponet: AppComponent,
+    private formBuilder: FormBuilder
   ) { }
 
-  ngOnInit() {
-    this.form = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
-    });
-  }
+ 
+  matcher = new MyErrorStateMatcher();
 
-  // convenience getter for easy access to form fields
-  get f() { return this.form.controls; }
+  ngOnInit() {
+
+    this.form = this.formBuilder.group({
+      emailFormControl: new FormControl('', [Validators.required, Validators.email]),
+      passwordFormControl : new FormControl('', [Validators.required, Validators.minLength(8)])})
+    // this.form = this.formBuilder.group({
+      
+    //   username: ['', Validators.required],
+    //   password: ['', Validators.required]
+    };
+  
+
+    get f() { return this.form.controls; }
+  
   onSubmit() {
     this.submitted = true;
     if (this.form.invalid) {
@@ -41,12 +51,14 @@ export class UserLoginComponent implements OnInit {
     }
 
     this.loading = true;
+    console.log("values is",this.f.emailFormControl)
+    console.log(this.f.emailFormControl.value)
     var authModel = {
-      email: this.f.username.value,
-      password: this.f.password.value,
+      email: this.f.emailFormControl.value,
+      password: this.f.passwordFormControl.value,
       rememverMe: true
     }
-
+debugger
     console.log(authModel)
     this.loginService.userLogin(authModel)
       .pipe(first()).subscribe({
@@ -55,7 +67,7 @@ export class UserLoginComponent implements OnInit {
           if (data.succeeded) {
             const returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'dashboard';
             
-            this.router.navigate(["/employee"]);
+            this.router.navigate(["/"]);
           }
           else {
             this.router.navigate(["/userlogin"])
@@ -72,5 +84,12 @@ export class UserLoginComponent implements OnInit {
     const dialogRef = this.dialog.open(UserRegiterComponent);
     dialogRef.afterClosed().subscribe(result => {
     });
+  }
+}
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
   }
 }
