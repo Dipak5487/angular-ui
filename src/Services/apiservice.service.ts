@@ -2,7 +2,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Subscription } from 'rxjs/internal/Subscription';
-import { userModel } from '../app/user/userlist/user.model';
+import { userModel } from '../app/models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +44,6 @@ export class ApiserviceService {
     return this.http.delete<number>(this.apiUrl + 'department/DeleteDepartment/' + deptId, httpOptions);
   }
 
-  // Employee
   getEmployeeList() {
     this.token = localStorage.getItem("app_token")
     const headers = new HttpHeaders({
@@ -82,5 +81,4 @@ export class ApiserviceService {
   getAllDepartmentNames(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl + 'get-all');
   }
-
 }

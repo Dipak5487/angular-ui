@@ -29,7 +29,7 @@ export class AddEditEmployeeComponent implements OnInit {
     this.service.getAllDepartmentNames().subscribe((data: any) => {
       this.DepartmentList = data;
 
-      console.log("Edit call",this.emp)
+      console.log("Edit call", this.emp)
       this.Name = this.emp.name;
       this.DOB = this.emp.dob;
       this.EmailId = this.emp.emailId;
@@ -65,14 +65,12 @@ export class AddEditEmployeeComponent implements OnInit {
       EmailId: this.EmailId,
       Country: this.Country,
       MobileNumber: this.MobileNumber
-      //PhotoFileName: this.PhotoFileName
     };
 
     this.service.updateEmployee(val).subscribe(res => {
       alert(res.toString());
     });
   }
-
 
   // uploadPhoto(event: any) {
   //   var file = event.target.files[0];

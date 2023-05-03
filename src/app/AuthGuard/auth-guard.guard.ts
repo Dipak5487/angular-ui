@@ -12,8 +12,9 @@ export class AuthGuardGuard implements CanActivate {
     private authService: AuthServiceService
 ) {}
 canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-  const user = localStorage.getItem('isUserActive');
-  if (user) {
+  const user = JSON.parse(localStorage.getItem('user')!);
+  debugger
+  if (user.succeeded) {
       return true;
   }
   // not logged in so redirect to login page with the return url

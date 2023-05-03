@@ -1,7 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ApiserviceService } from 'src/Services/apiservice.service';
-import { UserlistComponent } from '../userlist/userlist.component';
-
 
 @Component({
   selector: 'app-add-edit-user',
@@ -19,9 +17,8 @@ export class AddEditUserComponent implements OnInit {
   Country: string = ''
   MobileNumber: string = ''
   ngOnInit(): void {
-    //let myCompOneObj = new UserlistComponent(this.service);
   }
-  
+
 
 
   addEmployee() {
@@ -34,19 +31,11 @@ export class AddEditUserComponent implements OnInit {
     }
     this.service.addEmployee(item).subscribe(response => {
       if (response === 1) {
-        
-        
         alert("Recod Created Succefully")
-        
-
       } else {
-        
-       
         alert("Faild to Insert",)
-
       }
-     location.reload();
-
+      location.reload();
     })
   }
   updateEmployee() {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { userModel } from './user.model';
+import { userModel } from '../../models/user.model';
 import { ApiserviceService } from 'src/Services/apiservice.service';
 
 
@@ -30,14 +30,10 @@ export class UserlistComponent implements OnInit {
 
   getUserList() {
     try {
-     debugger
-      this.service.getEmployeeList().subscribe(data => {
-       
+      this.service.getEmployeeList().subscribe(data => {       
         if (data.length > 0) {
-
           this.UserList = data;
           this.table = true;
-          console.log("data", this.UserList)
         } else {
           this.table = false;
           //this.yellow = true
@@ -52,7 +48,6 @@ export class UserlistComponent implements OnInit {
           //     this.yellow = false
           //   }
           // }, 500);
-
         }
       });
     }

@@ -30,6 +30,7 @@ import { MatInputModule } from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
 import { UserLoginComponent } from './login/user-login/user-login.component';
 import { UserRegiterComponent } from './login/user-regiter/user-regiter.component';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { UserRegiterComponent } from './login/user-regiter/user-regiter.componen
     SidebarComponent,
     MenuComponent,    
     UserLoginComponent,
-    UserRegiterComponent
+    UserRegiterComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
