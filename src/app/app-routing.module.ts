@@ -1,18 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EmployeeComponent } from './employee/employee.component';
-import { DepartmentComponent } from './department/department.component';
-import { UserComponent } from './user/user.component';
-import { UserLoginComponent } from './login/user-login/user-login.component';
-import { UserRegiterComponent } from './login/user-regiter/user-regiter.component';
 import { AuthGuardGuard } from './AuthGuard/auth-guard.guard';
 
+const accountModule = () => import('src/app/Auth/Login/user.login/user.module').then(x => x.UserModule);
+const layoutModule =()=> import('./Layout/layout/layout.module').then(x=>x.LayoutModule)
+
 const routes: Routes = [
-  { path: 'employee', component: EmployeeComponent,canActivate: [AuthGuardGuard] },
-  { path: 'department', component: DepartmentComponent ,canActivate: [AuthGuardGuard]},
-  {path : 'user', component: UserComponent,canActivate: [AuthGuardGuard]},
-  {path : 'userlogin', component: UserLoginComponent},
-  {path : 'userRegister',component: UserRegiterComponent},
+  {path : '', loadChildren:accountModule},
+  {path : "login",loadChildren : accountModule},
+  {path : "home",loadChildren : layoutModule, canActivate: [AuthGuardGuard]},
 ];
 
 @NgModule({

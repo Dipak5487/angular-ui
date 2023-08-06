@@ -2,7 +2,6 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Subscription } from 'rxjs/internal/Subscription';
-import { userModel } from '../app/models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -50,7 +49,7 @@ export class ApiserviceService {
       'Authorization': `Bearer ${this.token}`
     });
     const requestOptions = { headers: headers };
-    return this.http.get<userModel[]>(this.apiUrl + 'get-all', requestOptions);
+    return this.http.get<any[]>(this.apiUrl + 'get-all', requestOptions);
   }
 
   getToken(tokenModel: any) {

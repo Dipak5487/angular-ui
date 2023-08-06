@@ -10,16 +10,20 @@ export class AuthGuardGuard implements CanActivate {
   constructor(
     private router: Router,
     private authService: AuthServiceService
-) {}
-canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-  const user = JSON.parse(localStorage.getItem('user')!);
-  debugger
-  if (user.succeeded) {
+  ) { }
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    const user = JSON.parse(localStorage.getItem('user') || "");
+    debugger
+    if (user != null && user != undefined && user.succeeded) {
       return true;
-  }
-  // not logged in so redirect to login page with the return url
-  this.router.navigate(['/userlogin'], { queryParams: { returnUrl: state.url }});
-  return false;
-}
+    }
+    // not logged in so redirect to login page with the return url
+    
+      this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
   
+    
+    localStorage.clear();
+    return false;
+  }
+
 }

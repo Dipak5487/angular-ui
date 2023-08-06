@@ -3,15 +3,14 @@ import { HttpClient, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { userModel } from 'src/app/models/user.model'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
   readonly login = "https://localhost:44396/api/Account/";
-  private userSubject: BehaviorSubject<userModel | null>;
-  public user: Observable<userModel | null>;
+  private userSubject: BehaviorSubject<any | null>;
+  public user: Observable<any | null>;
   constructor(private http: HttpClient,
     private route: ActivatedRoute,
     private router: Router,) {
@@ -19,13 +18,17 @@ export class AuthServiceService {
     this.user = this.userSubject.asObservable();
   }
 
-  userLogin(userLoginModel: any) {
+  async userLogin(userLoginModel: any) {
+    var userLogIn = {
+      email: userLoginModel.username,
+      password: userLoginModel.password
+    };
+
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    return this.http.post<any>(this.login + 'log-in', userLoginModel, httpOptions)
+    return await this.http.post<any>(this.login + 'log-in', userLogIn, httpOptions)
       .pipe(map(user => {
-        if (user.succeeded) {
-          localStorage.setItem('user', JSON.stringify(user));
-          this.userSubject.next(user);
+        if(user.succeeded){
+        localStorage.setItem('user', JSON.stringify(user));
         }
         return user;
       }));
