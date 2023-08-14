@@ -1,4 +1,7 @@
-<button mat-button [matMenuTriggerFor]="aboveMenu">Above</button>
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <div>Header</div>
+
+  <button mat-button [matMenuTriggerFor]="aboveMenu">Above</button>
 <mat-menu #aboveMenu="matMenu" yPosition="above">
   <button mat-menu-item>Item 1</button>
   <button mat-menu-item>Item 2</button>
@@ -9,17 +12,14 @@
   <button mat-menu-item>Item 1</button>
   <button mat-menu-item>Item 2</button>
 </mat-menu>
-
-<button mat-button [matMenuTriggerFor]="beforeMenu">Before</button>
-<mat-menu #beforeMenu="matMenu" xPosition="before">
-  <button mat-menu-item>Item 1</button>
-  <button mat-menu-item>Item 2</button>
-</mat-menu>
-
-
-<button mat-button [matMenuTriggerFor]="afterMenu">After</button>
-<mat-menu #afterMenu="matMenu" xPosition="after">
-  <button mat-menu-item>Item 1</button>
-  <button mat-menu-item>Item 2</button>
-</mat-menu>
-<button (click)="LogOut()">Logout</button>
+  <div fxLayout="row" fxLayoutGap="20px" >
+    <a routerLink="/login">Login</a>
+    <a routerLink="/registration">Registration</a>
+    <a routerLink="/dashboard">Dashboard</a>
+    <a routerLink="/home/employeelist">Employee List</a>
+    <a style="    width: 346px;height: 27px; margin-top: -29px;"  routerLink="/account-settings" > 
+      <mat-icon  (click)="openDialog('300ms', '1500ms')" (mouseenter)="openDialog('0ms', '0ms')" onmouseleave="closeDialog()">account_circle</mat-icon> 
+      {{name}}
+    </a>
+  </div>
+</div>

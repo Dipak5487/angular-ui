@@ -1,1 +1,21 @@
-<p>sidebar works!</p>
+
+<mat-drawer-container class="example-container">
+  <mat-drawer #drawer mode="push" (mouseleave)="drawer.close()">
+
+    <mat-toolbar color="secondary">
+      <mat-nav-list class="list-vertical">
+        <mat-list-item>
+          <a mat-menu-item routerLink="/home/userlist" routerLinkActive="active"> <mat-icon>people</mat-icon></a>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-toolbar>
+
+
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <button mat-raised-button (mouseenter)="drawer.toggle()" (click)="drawer.toggle()">
+      <mat-icon>dashboard</mat-icon>
+    </button>
+  </mat-drawer-content>
+</mat-drawer-container>

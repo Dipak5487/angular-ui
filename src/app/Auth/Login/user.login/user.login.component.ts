@@ -23,6 +23,13 @@ export class UserLoginComponent implements OnInit {
 
   ngOnInit() { }
 
+  handleKeyUp(e:any){
+    debugger
+    if(e.keyCode === 13){
+       this.login();
+    }
+ }
+
   async login() {
     var userLogIn = {
       username: this.username,
@@ -32,6 +39,7 @@ export class UserLoginComponent implements OnInit {
         .subscribe({
           next: (user) => {
             if (user.succeeded) {
+              localStorage.setItem("userName",this.username)
               this.toster.showSuccess("Login Successfully !")
               this.router.navigate(['/home']);
             } else {

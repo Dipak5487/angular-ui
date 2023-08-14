@@ -10,7 +10,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button'
 import {MatSidenavModule} from '@angular/material/sidenav'
 import {MatIconModule} from '@angular/material/icon';
-import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDialogModule} from '@angular/material/dialog';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -21,10 +20,13 @@ import { LoadingService } from './loading/loading.service';
 import { LoadingInterceptor } from './loading/LoadingInterceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { TosterService } from 'src/Services/TosterServices/tosterService';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { EmployeeListComponent } from './Components/employee-list/employee-list.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoadingComponent,
+    
     ],
   imports: [
     BrowserModule,
@@ -36,12 +38,12 @@ import { TosterService } from 'src/Services/TosterServices/tosterService';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatToolbarModule,
     MatFormFieldModule,
     MatDialogModule,
     IonicModule.forRoot(),
     MatProgressSpinnerModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    MatToolbarModule
  
   ],
   providers: [

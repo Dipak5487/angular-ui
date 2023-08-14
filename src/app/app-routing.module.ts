@@ -8,7 +8,7 @@ const layoutModule =()=> import('./Layout/layout/layout.module').then(x=>x.Layou
 const routes: Routes = [
   {path : '', loadChildren:accountModule},
   {path : "login",loadChildren : accountModule},
-  {path : "home",loadChildren : layoutModule, canActivate: [AuthGuardGuard]},
+  {path : "home",loadChildren : layoutModule},
 ];
 
 @NgModule({
