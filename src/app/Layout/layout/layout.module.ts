@@ -22,6 +22,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { EmployeeListComponent } from 'src/app/Components/employee-list/employee-list.component';
 import {MatDialog, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
+import { FooterComponent } from '../footer/footer.component';
 
 @NgModule({
     imports: [
@@ -56,7 +57,8 @@ import {MatDialog, MatDialogRef, MatDialogModule} from '@angular/material/dialog
         SidebarComponent,
         MenubarComponent,
         UserListComponent,
-        EmployeeListComponent
+        EmployeeListComponent,
+        FooterComponent
     ]
 })
 export class LayoutModule { }

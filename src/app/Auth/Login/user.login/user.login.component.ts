@@ -24,7 +24,7 @@ export class UserLoginComponent implements OnInit {
   ngOnInit() { }
 
   handleKeyUp(e:any){
-    debugger
+  
     if(e.keyCode === 13){
        this.login();
     }

@@ -26,7 +26,7 @@ import { EmployeeListComponent } from './Components/employee-list/employee-list.
   declarations: [
     AppComponent,
     LoadingComponent,
-    
+   
     ],
   imports: [
     BrowserModule,

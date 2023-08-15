@@ -24,7 +24,7 @@ export class MenubarComponent {
     private toster: TosterService,
     public dialog: MatDialog
   ) {
-    debugger
+
     this.user = JSON.parse(localStorage.getItem('user') || "");
     let userName = localStorage.getItem("userName") || "";
     if (this.user != null && this.user.succeeded) {
