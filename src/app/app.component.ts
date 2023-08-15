@@ -28,9 +28,9 @@ export class AppComponent implements OnInit {
       username: 'Dipak Chauhan',
       role: 'Admin'
     }
-    await this.service.getToken(tokenModel).subscribe(token => {
-      localStorage.setItem('app_token', token)
-    })
+    // await this.service.getToken(tokenModel).subscribe(token => {
+    //   localStorage.setItem('app_token', token)
+    // })
   }
 
   logout() {

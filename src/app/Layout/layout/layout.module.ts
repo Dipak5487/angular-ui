@@ -16,14 +16,14 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatCheckboxModule}  from '@angular/material/checkbox'
 import {CdkTableModule} from '@angular/cdk/table';
-import { MatTableModule } from '@angular/material/table';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { EmployeeListComponent } from 'src/app/Components/employee-list/employee-list.component';
 import {MatDialog, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
 import { FooterComponent } from '../footer/footer.component';
-
+import { MatPaginatorModule} from '@angular/material/paginator';
 @NgModule({
     imports: [
         
@@ -47,6 +47,7 @@ import { FooterComponent } from '../footer/footer.component';
         MatSelectModule,
         MatButtonModule,
         FlexLayoutModule,
+        MatPaginatorModule,
       
 
         

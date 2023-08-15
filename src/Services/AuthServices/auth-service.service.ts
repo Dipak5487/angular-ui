@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthServiceService {
-  readonly login = "https://localhost:44396/api/Account/";
+  readonly login = "https://localhost:44396/api/Authrization/";
   private userSubject: BehaviorSubject<any | null>;
   public user: Observable<any | null>;
   constructor(private http: HttpClient,
@@ -25,10 +25,14 @@ export class AuthServiceService {
     };
 
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    return await this.http.post<any>(this.login + 'log-in', userLogIn, httpOptions)
+    return await this.http.post<any>(this.login + 'GetToken', userLogIn, httpOptions)
       .pipe(map(user => {
-        if(user.succeeded){
-        localStorage.setItem('user', JSON.stringify(user));
+        if(user !=null && user.signInResult.succeeded){
+        localStorage.setItem('id', user.id);
+        localStorage.setItem('userEmail', user.username);
+        localStorage.setItem('access_token', user.token);
+        localStorage.setItem('signInResult', JSON.stringify(user.signInResult));
+
         }
         return user;
       }));

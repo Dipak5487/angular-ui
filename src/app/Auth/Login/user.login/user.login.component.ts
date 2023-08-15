@@ -38,9 +38,8 @@ export class UserLoginComponent implements OnInit {
       ; (await this.auth.userLogin(userLogIn)).pipe(first())
         .subscribe({
           next: (user) => {
-            if (user.succeeded) {
-              localStorage.setItem("userName",this.username)
-              this.toster.showSuccess("Login Successfully !")
+            debugger
+            if(user !=null && user.signInResult.succeeded) {
               this.router.navigate(['/home']);
             } else {
               this.toster.showErrors("Invalid email and password!")

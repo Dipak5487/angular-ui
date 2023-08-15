@@ -25,8 +25,8 @@ export class MenubarComponent {
     public dialog: MatDialog
   ) {
 
-    this.user = JSON.parse(localStorage.getItem('user') || "");
-    let userName = localStorage.getItem("userName") || "";
+    this.user = JSON.parse(localStorage.getItem('signInResult') || "");
+    let userName = localStorage.getItem("userEmail") || "";
     if (this.user != null && this.user.succeeded) {
       this.isUserLogin = this.user.succeeded
       this.name = userName
@@ -34,7 +34,9 @@ export class MenubarComponent {
   }
 
   LogOut() {
-    localStorage.removeItem("user")
+    localStorage.removeItem("signInResult")
+    localStorage.removeItem("userEmail")
+    localStorage.removeItem("token")
     localStorage.clear();
     this.toster.showWarning("Logout succesfully!")
     this.router.navigate(['/login']);
